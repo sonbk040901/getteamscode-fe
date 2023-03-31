@@ -1,21 +1,53 @@
 import { Select } from "./components/selectOption";
 import Input from "./components/input/Input";
 import styles from "./App.module.scss";
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
+import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 function App() {
   const [subjectID, setSunjectID] = useState("");
   const [school, setSchool] = useState("");
   const [semester, setSemester] = useState("");
   const [result, setResult] = useState("");
-  const url = `https://getteamscode-be.onrender.com?subject=${subjectID}&institute=${school}&semester=${semester}`;
-  const getData = () => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setResult(JSON.stringify(data, "\t", 2)));
-  };
+  const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef();
+  const getData = useMemo(() => {
+    return (subjectID, school, semester) => {
+      if (!subjectID || !school || !semester) {
+        toast.error("Hãy nhập đầy đủ các thông tin");
+        return;
+      }
+      setIsLoading(true);
+      setResult("");
+      const url = `https://getteamscode-be.onrender.com?subject=${subjectID}&institute=${school}&semester=${semester}`;
+      toast.promise(
+        fetch(url)
+          .then((res) => res.json())
+          .then((data) => {
+            setResult(JSON.stringify(data, "\t", 2));
+            setIsLoading(false);
+          }),
+        {
+          pending: "Đang tải dữ liệu về",
+          success: "Đã tải xong",
+          error: "Lỗi, không thể tải được giữ liệu",
+        }
+      );
+    };
+  }, []);
   return (
     <div className={`${styles.container}`}>
+      <Helmet>
+        <title>GET TEAMS CODE</title>
+        <link
+          rel="icon"
+          href="https://avatars.githubusercontent.com/u/81905309?s=400&u=e7d8899165c8665e93b7e2e4e1aa9866841c68c3&v=4"
+        />
+        <link
+          rel="apple-touch-icon"
+          href="https://avatars.githubusercontent.com/u/81905309?s=400&u=e7d8899165c8665e93b7e2e4e1aa9866841c68c3&v=4"
+        />
+      </Helmet>
       <section className={`${styles.content}`}>
         <Select
           title="Trường, viện"
@@ -58,8 +90,9 @@ function App() {
       <div style={{ textAlign: "center", marginTop: "2rem" }}>
         <button
           className={styles.button}
+          style={isLoading ? { cursor: "progress", opacity: 0.5 } : {}}
           onClick={() => {
-            getData();
+            getData(subjectID, school, semester);
           }}
         >
           Tìm kiếm

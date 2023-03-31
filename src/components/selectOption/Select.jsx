@@ -1,7 +1,5 @@
-import Option from "./Option";
 import Title from "./Title";
 import styles from "./style.module.scss";
-import { useState } from "react";
 import Select from "react-select";
 function MySelect({
   children,

@@ -1,7 +1,6 @@
 import styles from "./Input.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
 
 function Input({ title, value, onChange: changeValue, inputRef }) {
   return (
