@@ -3,7 +3,6 @@ import Input from "./components/input/Input";
 import styles from "./App.module.scss";
 import { useState, useRef, useMemo } from "react";
 import { toast } from "react-toastify";
-import { Helmet } from "react-helmet-async";
 function App() {
   const [subjectID, setSunjectID] = useState("");
   const [school, setSchool] = useState("");
@@ -28,7 +27,7 @@ function App() {
             setIsLoading(false);
           }),
         {
-          pending: "Đang tải dữ liệu về",
+          pending: "Đang tải dữ liệu về, có thể hơi lâu do đợi server",
           success: "Đã tải xong",
           error: "Lỗi, không thể tải được giữ liệu",
         }
@@ -37,17 +36,6 @@ function App() {
   }, []);
   return (
     <div className={`${styles.container}`}>
-      <Helmet>
-        <title>GET TEAMS CODE</title>
-        <link
-          rel="icon"
-          href="https://avatars.githubusercontent.com/u/81905309?s=400&u=e7d8899165c8665e93b7e2e4e1aa9866841c68c3&v=4"
-        />
-        <link
-          rel="apple-touch-icon"
-          href="https://avatars.githubusercontent.com/u/81905309?s=400&u=e7d8899165c8665e93b7e2e4e1aa9866841c68c3&v=4"
-        />
-      </Helmet>
       <section className={`${styles.content}`}>
         <Select
           title="Trường, viện"
@@ -87,7 +75,7 @@ function App() {
           }}
         ></Input>
       </section>
-      <div style={{ textAlign: "center", marginTop: "2rem" }}>
+      <div style={{ textAlign: "center", margin: ".5rem" }}>
         <button
           className={styles.button}
           style={isLoading ? { cursor: "progress", opacity: 0.5 } : {}}

@@ -35,14 +35,10 @@
 .content > * {
     margin-right: 1rem;
     min-width: 100px;
-    flex: 0 1 400px;
+    flex: 1 1 400px;
+    flex-wrap: wrap;
     border-radius: 7px;
     box-shadow: 0 0 6px -2px rgb(135, 135, 135), inset 0 0 10px -1px rgb(255, 255, 255);
-}
-@media screen and (max-width: 1000px) {
-    .content {
-        justify-content: center;
-    }
 }
 @media screen and (max-width: 800px) {
     .content {
