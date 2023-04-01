@@ -2,14 +2,10 @@
   "lang": "vi",
   "short_name": "GET TEAMS CODE",
   "name": "Get class teams information",
+  "description": "Trang web tìm mã code teams của các lớp trong các kỳ trước",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo.png",
+      "src": "logo460.png",
       "type": "image/png",
       "sizes": "460x460"
     }

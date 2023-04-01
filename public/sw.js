@@ -1,4 +1,4 @@
-const CACHE_NAME = `getteamscode-v1`;
+const CACHE_NAME = `getteamscode-v1.0.2`;
 
 // Use the install event to pre-cache all initial resources.
 self.addEventListener("install", (event) => {
@@ -32,5 +32,19 @@ self.addEventListener("fetch", (event) => {
         }
       }
     })()
+  );
+});
+self.addEventListener("activate", (event) => {
+  const cacheWhitelist = [CACHE_NAME];
+  event.waitUntil(
+    caches.keys().then(function (cacheNames) {
+      return Promise.all(
+        cacheNames.map(function (cacheName) {
+          if (cacheWhitelist.indexOf(cacheName) === -1) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
   );
 });
