@@ -1,4 +1,4 @@
-const CACHE_NAME = `getteamscode-v1.0.3`;
+const CACHE_NAME = `getteamscode-v1.0.4`;
 
 // Use the install event to pre-cache all initial resources.
 self.addEventListener("install", (event) => {
