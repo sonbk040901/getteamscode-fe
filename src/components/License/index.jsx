@@ -2,7 +2,7 @@ import style from "./License.module.scss";
 function License({ children }) {
   return (
     <>
-      <div className={`${style.license}`}>
+      <address className={`${style.license}`}>
         Created by:
         <img
           src="/static/github.png"
@@ -13,9 +13,9 @@ function License({ children }) {
           href="https://github.com/sonbk040901"
           rel="author"
         >
-          @sonlebk040901
+          @sonbk040901
         </a>
-      </div>
+      </address>
       {children}
     </>
   );
