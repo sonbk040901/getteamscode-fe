@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { ToastContainer } from "react-toastify";
 import { HelmetProvider } from "react-helmet-async";
+import License from "./components/License";
 import "./GlobalStyles.scss";
 import "react-toastify/dist/ReactToastify.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -23,7 +24,9 @@ root.render(
         theme="colored"
         limit={3}
       />
-      <App />
+      <License>
+        <App />
+      </License>
     </HelmetProvider>
   </React.StrictMode>
 );

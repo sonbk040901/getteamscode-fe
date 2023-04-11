@@ -1,0 +1,23 @@
+.license {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  color: rgba(240, 248, 255, 0.784);
+  font-size: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+  a {
+    color: rgba(201, 230, 255, 0.784);
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      color: rgba(154, 208, 255, 0.784);
+      text-decoration: underline;
+    }
+  }
+}
+.github {
+  aspect-ratio: 1/1;
+  width: 20px;
+  filter: drop-shadow(0 0 0.3rem rgb(255, 255, 255));
+}

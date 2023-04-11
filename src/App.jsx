@@ -79,14 +79,18 @@ function App() {
         <button
           className={styles.button}
           style={isLoading ? { cursor: "progress", opacity: 0.5 } : {}}
-          onClick={() => {
+          onClick={(e) => {
+            console.log(e);
             getData(subjectID, school, semester);
           }}
         >
           Tìm kiếm
         </button>
       </div>
-      <pre id="result" title="Thông tin mã teams và link teams vào lớp">
+      <pre
+        id="result"
+        title="Thông tin mã teams và link teams vào lớp"
+      >
         {result}
       </pre>
     </div>

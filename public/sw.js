@@ -1,4 +1,4 @@
-const CACHE_NAME = `getteamscode-v1.0.2`;
+const CACHE_NAME = `getteamscode-v1.0.3`;
 
 // Use the install event to pre-cache all initial resources.
 self.addEventListener("install", (event) => {
@@ -23,12 +23,14 @@ self.addEventListener("fetch", (event) => {
         try {
           // If the resource was not in the cache, try the network.
           const fetchResponse = await fetch(event.request);
-
-          // Save the resource in the cache and return it.
-          cache.put(event.request, fetchResponse.clone());
+          //Only cache requests that start with http
+          if (event.request.url.startsWith("http"))
+            // Save the resource in the cache and return it.
+            cache.put(event.request, fetchResponse.clone());
           return fetchResponse;
         } catch (e) {
           // The network failed.
+          console.log("The network failed: " + e);
         }
       }
     })()
@@ -39,10 +41,11 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then(function (cacheNames) {
       return Promise.all(
-        cacheNames.map(function (cacheName) {
+        cacheNames.map((cacheName) => {
           if (cacheWhitelist.indexOf(cacheName) === -1) {
             return caches.delete(cacheName);
           }
+          return false;
         })
       );
     })
